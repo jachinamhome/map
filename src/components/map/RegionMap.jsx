@@ -700,7 +700,7 @@ const RegionMap = () => {
 
 
 
-  // 주거 형태 키워드 필터
+  // 주거 유형 키워드 필터
     const houseTypeKeywords = {
     "원룸": ["원룸", "1.5룸"],
     "빌라/투룸+": ["빌라", "주택", "투룸", "쓰리룸"],
@@ -747,7 +747,7 @@ const RegionMap = () => {
     }
 
     // video.type → 대응되는 필터 UI 이름 반환
-    const getDisplayType = (type) => {
+    const getDisplayhouseTypes = (type) => {
       for (const [filterName, keywords] of Object.entries(houseTypeKeywords)) {
         if (keywords.some(keyword => type.includes(keyword))) {
           return filterName;

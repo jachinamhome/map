@@ -48,7 +48,7 @@ const RegionMapList = ({
               )}
 
               {/* 3. 면적 정보 */}
-              <p>{formatSize(getDisplayType(video.type), video.size)}</p>
+              <p>{formatSize(getDisplayhouseTypes(video.type), video.size)}</p>
 
               {/* 4. 역 정보 */}
               <p>{video.station}</p>

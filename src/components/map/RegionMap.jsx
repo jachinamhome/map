@@ -698,6 +698,17 @@ const RegionMap = () => {
     });
   };
 
+
+
+  // 주거 형태 키워드 필터
+    const houseTypeKeywords = {
+    "원룸": ["원룸", "1.5룸"],
+    "빌라/투룸+": ["빌라", "주택", "투룸", "쓰리룸"],
+    "오피스텔": ["오피스텔"],
+    "아파트": ["아파트"]
+  };
+
+
   // 필터링된 비디오 목록
   const filteredVideos = videos.filter(video => {
     // 광역단체 필터
@@ -726,10 +737,25 @@ const RegionMap = () => {
     }
 
     // 주거 유형 필터
-    const item_type = video.type.split(', ');
-    if (houseTypes.length > 0 && !houseTypes.some(type => item_type.includes(type))) {
-      return false;
+    if (houseTypes.length > 0) {
+      const videoType = video.type;
+      const match = houseTypes.some(selected => {
+        const keywords = houseTypeKeywords[selected] || [];
+        return keywords.some(keyword => videoType.includes(keyword));
+      });
+      if (!match) return false;
     }
+
+    // video.type → 대응되는 필터 UI 이름 반환
+    const getDisplayType = (type) => {
+      for (const [filterName, keywords] of Object.entries(houseTypeKeywords)) {
+        if (keywords.some(keyword => type.includes(keyword))) {
+          return filterName;
+        }
+      }
+      return type; // fallback: 일치하는 필터 없으면 원래 값 사용
+    };
+
 
     // 키워드 필터
     if (selectedKeywords.length > 0) {

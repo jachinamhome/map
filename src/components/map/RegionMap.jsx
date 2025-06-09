@@ -84,7 +84,7 @@ const RegionMap = () => {
   const [sortType, setSortType] = useState('date');
 
   // 정렬 방향 (오름차순, 내림차순)
-  const [sortOrder, setSortOrder] = useState('desc');
+  const [sortOrder, setSortOrder] = useState('asc');
 
   // 키워드 모달 표시 여부
   const [showKeywords, setShowKeywords] = useState(false);

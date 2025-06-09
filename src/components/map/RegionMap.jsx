@@ -746,15 +746,6 @@ const RegionMap = () => {
       if (!match) return false;
     }
 
-    // video.type → 대응되는 필터 UI 이름 반환
-    const getDisplayhouseTypes = (type) => {
-      for (const [filterName, keywords] of Object.entries(houseTypeKeywords)) {
-        if (keywords.some(keyword => type.includes(keyword))) {
-          return filterName;
-        }
-      }
-      return type; // fallback: 일치하는 필터 없으면 원래 값 사용
-    };
 
 
     // 키워드 필터

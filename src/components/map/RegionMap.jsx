@@ -1101,7 +1101,8 @@ const RegionMap = () => {
                 <button onClick={handleScaleUp} className="bg-white/90 border border-gray-300 text-gray-500 rounded-full p-2 shadow-lg hover:bg-gray-50 transition-colors"><FaPlus /></button>
                 <button onClick={handleScaleDown} className="bg-white/90 border border-gray-300 text-gray-500 rounded-full p-2 shadow-lg hover:bg-gray-50 transition-colors"><FaMinus /></button>
               </div>
-              {/* 관악구/강남구 툴팁 - 모바일 */}
+
+              {/* 관악구/강남구 툴팁 - 모바일 
               {['관악구', '강남구'].some(area => selectedAreas.includes(area)) && (
                 <div className="fixed right-4 z-50 flex flex-col gap-2" style={{ top: `${mapHeight - 80}px` }}>
                   {['관악구', '강남구'].map((area) =>
@@ -1125,8 +1126,9 @@ const RegionMap = () => {
                     ) : null
                   )}
                 </div>
-              )}
+              )}*/}
             </div>
+
             {/* 리사이저 */}
             <div
               className="fixed left-0 right-0 h-6 flex items-center justify-center cursor-row-resize bg-white/80 backdrop-blur-sm z-40 rounded-full"
@@ -1169,7 +1171,7 @@ const RegionMap = () => {
             >
               {/* 선택된 필터/키워드 태그들 */}
               {(selectedAreas.length > 0 || contractTypes.length > 0 || houseTypes.length > 0 || sizes.length > 0 || selectedKeywords.length > 0) && (
-                <div className="flex flex-wrap gap-2 px-4 pt-4 pb-2">
+                <div className="sticky top-0 z-40 bg-white flex flex-wrap gap-2 px-4 pt-4 pb-2 border-b border-gray-100">
                   {selectedAreas.map(area => (
                     <span key={area} className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs flex items-center">
                       {area}
@@ -1228,8 +1230,8 @@ const RegionMap = () => {
               )}
               {/* 정렬 바 */}
               <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-4 border-b border-gray-100 z-10 shadow-sm flex flex-row justify-between items-center gap-2 w-full">
-                <div className="min-w-[100px] flex-shrink-0">
-                  <span className="text-gray-500 text-base font-semibold whitespace-nowrap">총 {filteredVideos.length}개</span>
+                <div className="flex flex-row items-center justify-between gap-4 px-4 pb-4">
+                  <span className="text-gray-500 text-base font-semibold whitespace-nowrap">{filteredVideos.length}개 집을 찾았어요</span>
                 </div>
                 <div className="flex flex-row gap-2 flex-shrink-0 justify-end">
                   <button
@@ -1277,17 +1279,174 @@ const RegionMap = () => {
         ) : (
           // 데스크탑: 리스트와 지도 영역 분리
           <div className="flex h-screen">
-            {/* 좌측 리스트 영역 */}
-            <div className="w-[420px] h-full bg-white/95 backdrop-blur-sm shadow-2xl flex flex-col">
+
+            {/* 좌측 지도 영역 */}
+            <div className="flex-1 relative overflow-hidden">
+              <div
+                ref={mapContainerRef}
+                className="w-full h-full relative"
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
+                onPointerLeave={handlePointerUp}
+                onWheel={(e) => {
+                  e.preventDefault();
+                  if (e.deltaY < 0) {
+                    handleScaleUp();
+                  } else {
+                    handleScaleDown();
+                  }
+                }}
+              >
+                {loading && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-white/90 backdrop-blur-sm">
+                    <p className="text-gray-500 text-sm sm:text-base">지도를 불러오는 중...</p>
+                  </div>
+                )}
+                <div
+                  ref={svgContainerRef}
+                  className="w-full h-full"
+                  style={{
+                    transform: `scale(${mapScale}) translate(${mapPosition.x}px, ${mapPosition.y}px)`,
+                    transformOrigin: 'center center',
+                    transition: isDragging ? 'none' : 'transform 0.2s ease-out',
+                    cursor: isDragging ? 'grabbing' : (mapScale > 1 ? 'grab' : 'default'),
+                    minWidth: '100vw',
+                    minHeight: '100vh',
+                    margin: 0,
+                    padding: 0,
+                    touchAction: 'none',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    willChange: 'transform'
+                  }}
+                  onPointerDown={handlePointerDown}
+                  onPointerMove={handlePointerMove}
+                  onPointerUp={handlePointerUp}
+                  onPointerLeave={handlePointerUp}
+                  onWheel={handleWheel}
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
+                />
+
+                {/* 확대/축소 버튼 */}
+                <div className="absolute top-4 right-4 z-20 flex flex-col gap-2">
+                  <button onClick={handleScaleUp} className="bg-white/90 border border-gray-300 text-gray-500 rounded-full p-2 shadow-lg hover:bg-gray-50 transition-colors"><FaPlus /></button>
+                  <button onClick={handleScaleDown} className="bg-white/90 border border-gray-300 text-gray-500 rounded-full p-2 shadow-lg hover:bg-gray-50 transition-colors"><FaMinus /></button>
+                </div>
+
+                {/* 관악구/강남구 툴팁 
+                {['관악구', '강남구'].some(area => selectedAreas.includes(area)) && (
+                  <div className="fixed right-4 bottom-4 z-50 flex flex-col gap-2">
+                    {['관악구', '강남구'].map((area) =>
+                      selectedAreas.includes(area) ? (
+                        <a
+                          key={area}
+                          href={
+                            area === '관악구'
+                              ? 'https://map.naver.com/p/entry/place/1306435818?c=15.00,0,0,0,dh'
+                              : 'https://map.naver.com/p/entry/place/1280371285'
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm"
+                        >
+                          <div className="flex items-center gap-2 bg-yellow-400 text-black rounded-xl px-3 py-2 shadow-lg animate-fade-in hover:bg-yellow-500 transition-colors">
+                            <img src="/HomeSearch.svg" alt="집 찾기" className="w-7 h-7" />
+                            <span className="font-semibold"><b>{area}</b> 집을 찾고 계신가요?</span>
+                          </div>
+                        </a>
+                      ) : null
+                    )}
+                  </div>
+                )}*/}
+
+                {/* 우측 상단 필터/키워드 버튼 */}
+                <div className="fixed top-4 left-4 z-50 flex gap-2">
+                  <Button
+                    className="bg-gray-800 text-white border border-gray-800 rounded-full h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-700 transition-all hover:shadow-xl whitespace-nowrap"
+                    onClick={() => setRegionId(null)}
+                  >
+                    <IoArrowBack className="w-5 h-5 mr-1" />
+                    전국
+                  </Button>
+                  <button
+                    onClick={() => handleModalButtonClick('region')}
+                    className="bg-white border border-black text-black rounded-full h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-50 transition-all hover:shadow-xl whitespace-nowrap"
+                  >
+                    {nationRegionList.find(r => r.id === decodeURIComponent(regionId))?.label || '지역'}
+                    <FaChevronDown className="w-4 h-4 ml-1" />
+                  </button>
+                  <button
+                    onClick={() => handleModalButtonClick('filter')}
+                    className="bg-white border border-black text-black rounded-full h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-50 transition-all hover:shadow-xl whitespace-nowrap text-xs"
+                  >
+                    <IoFilter className="w-5 h-5 mr-1" />
+                    필터
+                  </button>
+                  <button
+                    onClick={() => handleModalButtonClick('keyword')}
+                    className={`flex items-center rounded-full h-9 px-4 sm:px-6 shadow-lg font-semibold border transition-all hover:shadow-xl whitespace-nowrap text-xs ${
+                      showKeywords
+                        ? 'bg-blue-500 text-white border-blue-500'
+                        : 'bg-white border-black text-black hover:bg-gray-50'
+                    }`}
+                  >
+                    <span className="text-sm mr-1">Aa</span>
+                    키워드
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* 우측 리스트 영역 */}
+            <div className="w-[500px] h-full bg-white/95 backdrop-blur-sm shadow-2xl flex flex-col">
               {/* 정렬 바 */}
               <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-4 border-b border-gray-100 z-10 shadow-sm">
-                <div className="flex flex-row justify-between items-center gap-2 w-full">
-                  <h3 className="text-lg font-bold flex-shrink-0 w-full">
+                <div className="flex flex-row items-center justify-between gap-4 w-full flex-nowrap">
+                  <h3 className="text-base font-semibold text-gray-500 whitespace-nowrap flex-shrink-0">
                     {/* {selectedAreas.length > 0 ? `${selectedAreas.join(', ')}` : '전체'} */}
                     <span className="text-gray-500 text-base ml-2">
-                      총 {filteredVideos.length}개의 집을 찾았어요
+                      {filteredVideos.length}개의 집을 찾았어요
                     </span>
                   </h3>
+
+                  {/* 오른쪽: 정렬 버튼 */}
+                    <div className="flex flex-row gap-2 flex-shrink-0 whitespace-nowrap">
+                    <button
+                      onClick={() => handleSort('date')}
+                      className={`px-3 py-1 rounded-full text-xs border transition-all hover:shadow-md ${
+                        sortType === 'date'
+                          ? 'bg-black text-white border-black'
+                          : 'bg-white text-black border-gray-300 hover:bg-gray-100'
+                      }`}
+                    >
+                      날짜순 {sortType === 'date' && (sortOrder === 'desc' ? '↓' : '↑')}
+                    </button>
+                    <button
+                      onClick={() => handleSort('price')}
+                      className={`px-3 py-1 rounded-full text-xs border transition-all hover:shadow-md ${
+                        sortType === 'price'
+                          ? 'bg-black text-white border-black'
+                          : 'bg-white text-black border-gray-300 hover:bg-gray-100'
+                      }`}
+                    >
+                      가격순 {sortType === 'price' && (sortOrder === 'desc' ? '↓' : '↑')}
+                    </button>
+                    <button
+                      onClick={() => handleSort('size')}
+                      className={`px-3 py-1 rounded-full text-xs border transition-all hover:shadow-md ${
+                        sortType === 'size'
+                          ? 'bg-black text-white border-black'
+                          : 'bg-white text-black border-gray-300 hover:bg-gray-100'
+                      }`}
+                    >
+                      크기순 {sortType === 'size' && (sortOrder === 'desc' ? '↓' : '↑')}
+                    </button>
+                  </div>
+
                 </div>
               </div>
 
@@ -1361,38 +1520,7 @@ const RegionMap = () => {
                 }}
               >
                 <div className="p-4">
-                  <div className="flex flex-row gap-2 flex-shrink-0 justify-end mb-2">
-                    <button
-                      onClick={() => handleSort('date')}
-                      className={`px-3 py-1 rounded-full text-xs border transition-all hover:shadow-md ${
-                        sortType === 'date'
-                          ? 'bg-black text-white border-black'
-                          : 'bg-white text-black border-gray-300 hover:bg-gray-100'
-                      }`}
-                    >
-                      날짜순 {sortType === 'date' && (sortOrder === 'desc' ? '↓' : '↑')}
-                    </button>
-                    <button
-                      onClick={() => handleSort('price')}
-                      className={`px-3 py-1 rounded-full text-xs border transition-all hover:shadow-md ${
-                        sortType === 'price'
-                          ? 'bg-black text-white border-black'
-                          : 'bg-white text-black border-gray-300 hover:bg-gray-100'
-                      }`}
-                    >
-                      가격순 {sortType === 'price' && (sortOrder === 'desc' ? '↓' : '↑')}
-                    </button>
-                    <button
-                      onClick={() => handleSort('size')}
-                      className={`px-3 py-1 rounded-full text-xs border transition-all hover:shadow-md ${
-                        sortType === 'size'
-                          ? 'bg-black text-white border-black'
-                          : 'bg-white text-black border-gray-300 hover:bg-gray-100'
-                      }`}
-                    >
-                      크기순 {sortType === 'size' && (sortOrder === 'desc' ? '↓' : '↑')}
-                    </button>
-                  </div>
+
                   <RegionMapList
                     videos={filteredVideos}
                     getSortedVideos={getSortedVideos}
@@ -1403,126 +1531,6 @@ const RegionMap = () => {
               </div>
             </div>
 
-            {/* 우측 지도 영역 */}
-            <div className="flex-1 relative overflow-hidden">
-              <div
-                ref={mapContainerRef}
-                className="w-full h-full relative"
-                onPointerDown={handlePointerDown}
-                onPointerMove={handlePointerMove}
-                onPointerUp={handlePointerUp}
-                onPointerLeave={handlePointerUp}
-                onWheel={(e) => {
-                  e.preventDefault();
-                  if (e.deltaY < 0) {
-                    handleScaleUp();
-                  } else {
-                    handleScaleDown();
-                  }
-                }}
-              >
-                {loading && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-white/90 backdrop-blur-sm">
-                    <p className="text-gray-500 text-sm sm:text-base">지도를 불러오는 중...</p>
-                  </div>
-                )}
-                <div
-                  ref={svgContainerRef}
-                  className="w-full h-full"
-                  style={{
-                    transform: `scale(${mapScale}) translate(${mapPosition.x}px, ${mapPosition.y}px)`,
-                    transformOrigin: 'center center',
-                    transition: isDragging ? 'none' : 'transform 0.2s ease-out',
-                    cursor: isDragging ? 'grabbing' : (mapScale > 1 ? 'grab' : 'default'),
-                    minWidth: '100vw',
-                    minHeight: '100vh',
-                    margin: 0,
-                    padding: 0,
-                    touchAction: 'none',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    willChange: 'transform'
-                  }}
-                  onPointerDown={handlePointerDown}
-                  onPointerMove={handlePointerMove}
-                  onPointerUp={handlePointerUp}
-                  onPointerLeave={handlePointerUp}
-                  onWheel={handleWheel}
-                  onTouchStart={handleTouchStart}
-                  onTouchMove={handleTouchMove}
-                  onTouchEnd={handleTouchEnd}
-                />
-
-                {/* 확대/축소 버튼 */}
-                <div className="fixed top-4 right-4 z-20 flex flex-col gap-2">
-                  <button onClick={handleScaleUp} className="bg-white/90 border border-gray-300 text-gray-500 rounded-full p-2 shadow-lg hover:bg-gray-50 transition-colors"><FaPlus /></button>
-                  <button onClick={handleScaleDown} className="bg-white/90 border border-gray-300 text-gray-500 rounded-full p-2 shadow-lg hover:bg-gray-50 transition-colors"><FaMinus /></button>
-                </div>
-
-                {/* 관악구/강남구 툴팁 */}
-                {['관악구', '강남구'].some(area => selectedAreas.includes(area)) && (
-                  <div className="fixed right-4 bottom-4 z-50 flex flex-col gap-2">
-                    {['관악구', '강남구'].map((area) =>
-                      selectedAreas.includes(area) ? (
-                        <a
-                          key={area}
-                          href={
-                            area === '관악구'
-                              ? 'https://map.naver.com/p/entry/place/1306435818?c=15.00,0,0,0,dh'
-                              : 'https://map.naver.com/p/entry/place/1280371285'
-                          }
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm"
-                        >
-                          <div className="flex items-center gap-2 bg-yellow-400 text-black rounded-xl px-3 py-2 shadow-lg animate-fade-in hover:bg-yellow-500 transition-colors">
-                            <img src="/HomeSearch.svg" alt="집 찾기" className="w-7 h-7" />
-                            <span className="font-semibold"><b>{area}</b> 집을 찾고 계신가요?</span>
-                          </div>
-                        </a>
-                      ) : null
-                    )}
-                  </div>
-                )}
-
-                {/* 우측 상단 필터/키워드 버튼 */}
-                <div className="fixed top-4 left-[440px] z-50 flex gap-2">
-                  <Button
-                    className="bg-gray-800 text-white border border-gray-800 rounded-full h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-700 transition-all hover:shadow-xl whitespace-nowrap"
-                    onClick={() => setRegionId(null)}
-                  >
-                    <IoArrowBack className="w-5 h-5 mr-1" />
-                    전국
-                  </Button>
-                  <button
-                    onClick={() => handleModalButtonClick('region')}
-                    className="bg-white border border-black text-black rounded-full h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-50 transition-all hover:shadow-xl whitespace-nowrap"
-                  >
-                    {nationRegionList.find(r => r.id === decodeURIComponent(regionId))?.label || '지역'}
-                    <FaChevronDown className="w-4 h-4 ml-1" />
-                  </button>
-                  <button
-                    onClick={() => handleModalButtonClick('filter')}
-                    className="bg-white border border-black text-black rounded-full h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-50 transition-all hover:shadow-xl whitespace-nowrap text-xs"
-                  >
-                    <IoFilter className="w-5 h-5 mr-1" />
-                    필터
-                  </button>
-                  <button
-                    onClick={() => handleModalButtonClick('keyword')}
-                    className={`flex items-center rounded-full h-9 px-4 sm:px-6 shadow-lg font-semibold border transition-all hover:shadow-xl whitespace-nowrap text-xs ${
-                      showKeywords
-                        ? 'bg-blue-500 text-white border-blue-500'
-                        : 'bg-white border-black text-black hover:bg-gray-50'
-                    }`}
-                  >
-                    <span className="text-sm mr-1">Aa</span>
-                    키워드
-                  </button>
-                </div>
-              </div>
-            </div>
           </div>
         )}
       </div>

@@ -51,6 +51,7 @@ const RegionMapList = ({
               </div>
 
               {/* 2. 가격 및 계약 */}
+              {video.contract && (video.deposit) && (
               <div className="flex items-center gap-1">
                 <FaWonSign className="w-3 h-3 text-gray-500 mr-1" />
                 {video.contract === '월세' ? (
@@ -67,12 +68,15 @@ const RegionMapList = ({
                   </p>
                 ) : null}
               </div>
+              )}
 
               {/* 3. 형태 + 실평수 */}
+              {video.type && (video.size) && (
               <div className="flex items-center gap-1">
                 <TbBuildingCommunity className="w-4 h-4 text-gray-500" />
                 <p className="font-medium text-sm text-black">{formatSize((video.type), video.size)}</p>
               </div>
+              )}
 
               {/* 4. 인근역 */}
               {video.station && (

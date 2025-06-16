@@ -115,7 +115,12 @@ const RegionMap = () => {
   const [mapScale, setMapScale] = useState(isMobile ? 1.5 : 1.25);
 
   // 지도 위치 정보
-  const [mapPosition, setMapPosition] = useState({ x: 0, y: 0 });
+  const [mapPosition, setMapPosition] = useState(() => {
+  if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+    return { x: -80, y: 0 };  // 데스크탑: 왼쪽으로 약간 이동
+  }
+  return { x: 0, y: 0 };       // 모바일
+});
 
   // 드래그 중인지 여부
   const [isDragging, setIsDragging] = useState(false);
@@ -399,8 +404,9 @@ const RegionMap = () => {
   }, []);
 
   // 지도 접힘/펼침 상태 변경 시 위치 초기화
-  useEffect(() => {
-    setMapPosition({ x: 0, y: 0 });
+useEffect(() => {
+  const defaultX = window.innerWidth >= 768 ? -80 : 0;
+  setMapPosition({ x: defaultX, y: 0 });
     setMapScale(1.5); // 50% 확대
     if (!mapFolded && svgLoaded) {
       const svgElement = svgContainerRef.current?.querySelector('svg');

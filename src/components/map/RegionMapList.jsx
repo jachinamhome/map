@@ -22,13 +22,18 @@ const RegionMapList = ({
         // 부동산 정보 카드
         <div key={`${video.youtube || ''}-${index}`} className="bg-white rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl transition-shadow duration-200 overflow-hidden group">
           {/* 유튜브 썸네일 영역 */}
-          <div className="aspect-video relative overflow-hidden">
-            <img
-              src={"https://img.youtube.com/vi/" + video.youtube + "/0.jpg"}
-              alt={video.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-          </div>
+            <a
+              href={`https://www.youtube.com/watch?v=${video.youtube}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block aspect-video relative overflow-hidden"
+            >
+              <img
+                src={`https://img.youtube.com/vi/${video.youtube}/0.jpg`}
+                alt={video.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            </a>
 
           {/* 부동산 정보 영역 */}
           <div className="p-5">
@@ -59,7 +64,7 @@ const RegionMapList = ({
               )}
             </div>
 
-            {/* 유튜브 링크 */}
+              {/* 유튜브 링크 
             <a
               href={"https://www.youtube.com/watch?v=" + video.youtube}
               target="_blank"
@@ -68,7 +73,7 @@ const RegionMapList = ({
             >
               <FaYoutube className="inline-block w-4 h-4 mr-1" />
               유튜브 보기
-            </a>
+            </a>*/}
           </div>
         </div>
       ))}

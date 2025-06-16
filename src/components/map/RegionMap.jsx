@@ -1519,7 +1519,7 @@ const RegionMap = () => {
                   container.scrollTop += scrollAmount;
                 }}
               >
-                <div className="p-4">
+                <div className="p-4 w-full min-w-0">
 
                   <RegionMapList
                     videos={filteredVideos}

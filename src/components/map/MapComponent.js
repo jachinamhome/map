@@ -75,7 +75,7 @@ export default function MapComponent({ geoJsonData, onRegionSelect }) {
   };
 
   // 맵 중앙 위치 설정 (대한민국 중심)
-  const center = [36.5, 120.5];
+  const center = [36.5, 127.5];
   const zoom = 7;
 
   return (

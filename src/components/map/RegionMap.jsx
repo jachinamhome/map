@@ -1402,7 +1402,7 @@ const RegionMap = () => {
             </div>
 
             {/* 우측 리스트 영역 */}
-            <div className="w-[500px] min-w-[500px] max-w-[500px] flex-shrink-0 flex flex-col">
+            <div className="w-[450px] min-w-[450px] max-w-[450px] flex-shrink-0 flex flex-col">
               {/* 정렬 바 */}
               <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-4 border-b border-gray-100 z-10 shadow-sm">
                 <div className="flex flex-row items-center justify-between gap-4 w-full flex-nowrap">

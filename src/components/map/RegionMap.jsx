@@ -1085,7 +1085,7 @@ const RegionMap = () => {
                   className="bg-black text-white border border-black rounded-full w-24 h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-50 transition-all hover:shadow-xl whitespace-nowrap text-sm"
                 >
                   {nationRegionList.find(r => r.id === decodeURIComponent(regionId))?.label || '지역'}
-                  <FaChevronDown className="w-4 h-4 ml-1" />
+                  <FaChevronDown className="w-4 h-4 ml-4" />
                 </button>
                 <button
                   onClick={() => handleModalButtonClick('filter')}

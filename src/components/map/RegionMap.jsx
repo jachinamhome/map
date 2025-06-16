@@ -1418,7 +1418,7 @@ const RegionMap = () => {
                 <div className="flex flex-row items-center justify-between gap-4 w-full flex-nowrap">
                   <h3 className="text-base font-semibold text-gray-500 whitespace-nowrap flex-shrink-0">
                     {/* {selectedAreas.length > 0 ? `${selectedAreas.join(', ')}` : '전체'} */}
-                    <span className="text-gray-500 text-base ml-2">
+                    <span className="text-black text-sm font-light ml-2">
                       {filteredVideos.length}개의 집을 찾았어요
                     </span>
                   </h3>

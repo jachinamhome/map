@@ -174,7 +174,7 @@ const RegionMap = () => {
     { id: '강원특별자치도', label: '강원' },
     { id: '충청북도', label: '충북' },
     { id: '충청남도', label: '충남' },
-    { id: '전라북도', label: '전북' },
+    { id: '전북특별자치도', label: '전북' },
     { id: '전라남도', label: '전남' },
     { id: '경상북도', label: '경북' },
     { id: '경상남도', label: '경남' },

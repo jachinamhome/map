@@ -8,6 +8,11 @@
  * 4. 지역, 면적, 역 정보 표시
  */
 import { FaYoutube } from 'react-icons/fa';
+import { HiOutlineLocationMarker } from 'react-icons/hi';
+import { FaWonSign } from 'react-icons/fa6';
+import { TbBuildingCommunity } from 'react-icons/tb';
+import { LuRuler } from 'react-icons/lu';
+import { GiSubway } from 'react-icons/gi';
 
 const RegionMapList = ({
   videos,              // 부동산 정보 목록
@@ -38,39 +43,56 @@ const RegionMapList = ({
           {/* 부동산 정보 영역 */}
           <div className="p-5">
             <div className="text-sm text-black space-y-1">
-              {/* 1. 지역명 */}
-              <p className="font-bold">{video.area}{video.area2 ? ` ${video.area2}` : ''}</p>
 
-              {/* 2. 가격 및 계약 정보 */}
-              {(
-                video.contract === '월세' ? (
-                  <p className="font-bold text-2xl">{video.contract} {formatDeposit(video.deposit ?? 0)}/{video.rent}</p>
-                ) : video.contract === '전세' ? (
-                  <p className="font-bold text-2xl">{video.contract} {formatDeposit(video.deposit ?? 0)}</p>
-                ) : video.contract === '매매' ? (
-                  <p className="font-bold text-2xl">{video.contract} {formatDeposit(video.deposit ?? video.sale ?? 0)}</p>
-                ) : null
-              )}
-
-              {/* 3. 면적 정보 */}
-              <p>{formatSize((video.type), video.size)}</p>
-
-              {/* 4. 역 정보 */}
-              <p className="mb-2">{video.station}</p>
-
-              {/* 5. 태그 정보 */}
-              {video.tags && video.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 mt-1">
-                {video.tags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
+              {/* 1. 지역 */}
+              <div className="flex items-center gap-1">
+                <HiOutlineLocationMarker className="w-4 h-4 text-gray-500" />
+                <p className="font-bold">{video.area}{video.area2 ? ` ${video.area2}` : ''}</p>
               </div>
-            )}
+
+              {/* 2. 가격 및 계약 */}
+              <div className="flex items-center gap-1">
+                <FaWonSign className="w-4 h-4 text-gray-500" />
+                {video.contract === '월세' ? (
+                  <p className="font-medium text-xl text-black">
+                    {video.contract} {formatDeposit(video.deposit ?? 0)}/{video.rent}
+                  </p>
+                ) : video.contract === '전세' ? (
+                  <p className="font-medium text-xl text-black">
+                    {video.contract} {formatDeposit(video.deposit ?? 0)}
+                  </p>
+                ) : video.contract === '매매' ? (
+                  <p className="font-medium text-xl text-black">
+                    {video.contract} {formatDeposit(video.deposit ?? video.sale ?? 0)}
+                  </p>
+                ) : null}
+              </div>
+
+              {/* 3. 형태 + 실평수 */}
+              <div className="flex items-center gap-1">
+                <TbBuildingCommunity className="w-4 h-4 text-gray-500" />
+                <p>{formatSize((video.type), video.size)}</p>
+              </div>
+
+              {/* 4. 인근역 */}
+              <div className="flex items-center gap-1 mb-2">
+                <GiSubway className="w-4 h-4 text-gray-500" />
+                <p>{video.station}</p>
+              </div>
+
+              {/* 5. 태그 */}
+              {video.tags && video.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-1">
+                  {video.tags.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
 
               {/* 유튜브 링크 

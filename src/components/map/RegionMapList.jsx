@@ -80,15 +80,15 @@ const RegionMapList = ({
 
               {/* 4. 인근역 */}
               {video.station && (
-              <div className="flex items-center gap-1 mb-2">
+              <div className="flex items-center gap-1">
                 <GiSubway className="w-4 h-4 text-gray-500" />
-                <p className="font-medium text-sm text-gray-500"> {video.station}</p>
+                <p className="font-medium text-xs text-gray-500"> {video.station}</p>
               </div>
               )}
 
               {/* 5. 태그 */}
               {video.tags && video.tags.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-1">
+                <div className="flex flex-wrap gap-2 mt-2">
                   {video.tags.map((tag, i) => (
                     <span
                       key={i}

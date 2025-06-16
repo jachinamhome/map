@@ -1077,7 +1077,7 @@ const RegionMap = () => {
                   className="bg-gray-800 text-white border border-gray-800 rounded-full h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-700 transition-all hover:shadow-xl whitespace-nowrap"
                   onClick={() => setRegionId(null)}
                 >
-                  <MdOutlineMap className="w-5 h-5 mr-1" />
+                  <MdOutlineMap className="w-5 h-5" />
                   전국지도
                 </Button>
                 <button
@@ -1091,7 +1091,7 @@ const RegionMap = () => {
                   onClick={() => handleModalButtonClick('filter')}
                   className="bg-white border border-black text-black rounded-full h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-50 transition-all hover:shadow-xl whitespace-nowrap text-xs"
                 >
-                  <MdFilterAlt className="w-5 h-5 mr-1" />
+                  <MdFilterAlt className="w-4 h-4 mr-1" />
                   필터
                 </button>
                 <button
@@ -1390,8 +1390,8 @@ const RegionMap = () => {
                     className="bg-gray-800 text-white border border-gray-800 rounded-full h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-700 transition-all hover:shadow-xl whitespace-nowrap"
                     onClick={() => setRegionId(null)}
                   >
-                    <IoArrowBack className="w-5 h-5 mr-1" />
-                    전국
+                    <MdOutlineMap className="w-5 h-5" />
+                    전국지도
                   </Button>
                   <button
                     onClick={() => handleModalButtonClick('region')}
@@ -1404,7 +1404,7 @@ const RegionMap = () => {
                     onClick={() => handleModalButtonClick('filter')}
                     className="bg-white border border-black text-black rounded-full h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-50 transition-all hover:shadow-xl whitespace-nowrap text-xs"
                   >
-                    <IoFilter className="w-5 h-5 mr-1" />
+                    <MdFilterAlt className="w-4 h-4" />
                     필터
                   </button>
                   <button

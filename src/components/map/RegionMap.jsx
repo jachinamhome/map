@@ -1074,7 +1074,7 @@ const RegionMap = () => {
               {/* 오른쪽 상단: 필터/키워드/지역선택 버튼 */}
               <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 flex gap-2 items-center">
                 <Button
-                  className="bg-black text-white border border-black rounded-full w-24 h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-700 transition-all hover:shadow-xl whitespace-nowrap text-sm"
+                  className="bg-black text-white border border-black rounded-full w-23 h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-700 transition-all hover:shadow-xl whitespace-nowrap text-sm"
                   onClick={() => setRegionId(null)}
                 >
                   <MdOutlineMap className="w-5 h-5" />
@@ -1082,10 +1082,10 @@ const RegionMap = () => {
                 </Button>
                 <button
                   onClick={() => handleModalButtonClick('region')}
-                  className="bg-black text-white border border-black rounded-full w-24 h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-50 transition-all hover:shadow-xl whitespace-nowrap text-sm"
+                  className="bg-black text-white border border-black rounded-full w-23 h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-50 transition-all hover:shadow-xl whitespace-nowrap text-sm"
                 >
-                  {nationRegionList.find(r => r.id === decodeURIComponent(regionId))?.label || '지역'}
-                  <FaChevronDown className="w-4 h-4 ml-4" />
+                  {nationRegionList.find(r => r.id === decodeURIComponent(regionId))?.label || '지역'}　
+                  <FaChevronDown className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => handleModalButtonClick('filter')}
@@ -1387,7 +1387,7 @@ const RegionMap = () => {
                 {/* 우측 상단 필터/키워드 버튼 */}
                 <div className="fixed top-4 left-4 z-50 flex gap-2">
                   <Button
-                    className="bg-black text-white border border-black rounded-full w-32 h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-700 transition-all hover:shadow-xl whitespace-nowrap"
+                    className="bg-black text-white border border-black rounded-full w-36 h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-700 transition-all hover:shadow-xl whitespace-nowrap"
                     onClick={() => setRegionId(null)}
                   >
                     <MdOutlineMap className="w-5 h-5" />
@@ -1395,10 +1395,10 @@ const RegionMap = () => {
                   </Button>
                   <button
                     onClick={() => handleModalButtonClick('region')}
-                    className="bg-black text-white border border-black rounded-full w-32 h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-700 transition-all hover:shadow-xl whitespace-nowrap "
+                    className="bg-black text-white border border-black rounded-full w-36 h-9 px-4 sm:px-6 shadow-lg font-semibold flex items-center hover:bg-gray-700 transition-all hover:shadow-xl whitespace-nowrap "
                   >
-                    {nationRegionList.find(r => r.id === decodeURIComponent(regionId))?.label || '지역'}
-                    <FaChevronDown className="w-4 h-4 ml-4" />
+                    {nationRegionList.find(r => r.id === decodeURIComponent(regionId))?.label || '지역'}　
+                    <FaChevronDown className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => handleModalButtonClick('filter')}

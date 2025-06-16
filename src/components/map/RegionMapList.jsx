@@ -60,8 +60,17 @@ const RegionMapList = ({
 
               {/* 5. 태그 정보 */}
               {video.tags && video.tags.length > 0 && (
-                <p className="text-xs text-black">{video.tags.join(', ')}</p>
-              )}
+              <div className="flex flex-wrap gap-2 mt-1">
+                {video.tags.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
             </div>
 
               {/* 유튜브 링크 

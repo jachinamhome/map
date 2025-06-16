@@ -1231,7 +1231,7 @@ const RegionMap = () => {
               {/* 정렬 바 */}
               <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-4 border-b border-gray-100 z-10 shadow-sm flex flex-row justify-between items-center gap-2 w-full">
                 <div className="flex flex-row items-center justify-between gap-4 px-4 pb-4">
-                  <span className="text-gray-500 text-base font-semibold whitespace-nowrap">{filteredVideos.length}개 집을 찾았어요</span>
+                  <span className="text-black text-sm font-light whitespace-nowrap">{filteredVideos.length}개 집을 찾았어요</span>
                 </div>
                 <div className="flex flex-row gap-2 flex-shrink-0 justify-end">
                   <button

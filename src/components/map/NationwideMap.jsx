@@ -98,7 +98,7 @@ const NationwideMap = () => {
               if (id) regionMap[id] = region;
 
               // 기본 스타일 설정 - 모든 경계선은 흰색으로 고정
-              region.style.fill = '#cdcccc';
+              region.style.fill = '#e0e0e0';
               region.style.stroke = '#ffffff';
               region.style.strokeWidth = '1';
               region.style.transition = 'all 0.3s ease';
@@ -129,7 +129,7 @@ const NationwideMap = () => {
               if (currentHighlightedRegion) {
                 const prevRegion = regionMap[currentHighlightedRegion];
                 if (prevRegion) {
-                  prevRegion.style.fill = '#cdcccc';
+                  prevRegion.style.fill = '#e0e0e0';
                 }
 
                 // 포함된 지역 초기화
@@ -137,7 +137,7 @@ const NationwideMap = () => {
                   containedRegions[currentHighlightedRegion].forEach(containedId => {
                     const containedRegion = regionMap[containedId];
                     if (containedRegion) {
-                      containedRegion.style.fill = '#cdcccc';
+                      containedRegion.style.fill = '#e0e0e0';
                     }
                   });
                 }
@@ -147,7 +147,7 @@ const NationwideMap = () => {
               const region = regionMap[regionId];
               if (region) {
                 // 내부 색상만 변경
-                region.style.fill = '#FFD900';
+                region.style.fill = '#FFE066';
 
                 // 내부 지역 처리 - 내부 지역은 하이라이트하지 않음
                 if (containedRegions[regionId]) {
@@ -155,7 +155,7 @@ const NationwideMap = () => {
                     const containedRegion = regionMap[containedId];
                     if (containedRegion) {
                       // 내부 지역 색상은 유지
-                      containedRegion.style.fill = '#cdcccc';
+                      containedRegion.style.fill = '#e0e0e0';
                     }
                   });
                 }
@@ -169,7 +169,7 @@ const NationwideMap = () => {
               if (currentHighlightedRegion) {
                 const region = regionMap[currentHighlightedRegion];
                 if (region) {
-                  region.style.fill = '#cdcccc';
+                  region.style.fill = '#e0e0e0';
                 }
 
                 // 내부 지역 처리
@@ -177,7 +177,7 @@ const NationwideMap = () => {
                   containedRegions[currentHighlightedRegion].forEach(containedId => {
                     const containedRegion = regionMap[containedId];
                     if (containedRegion) {
-                      containedRegion.style.fill = '#cdcccc';
+                      containedRegion.style.fill = '#e0e0e0';
                     }
                   });
                 }

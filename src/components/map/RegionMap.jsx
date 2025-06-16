@@ -1169,6 +1169,11 @@ const RegionMap = () => {
                 }
               }}
             >
+
+
+              {/* 상단 고정 통합 영역 */}
+              <div className="sticky top-0 z-40 bg-white">
+
               {/* 선택된 필터/키워드 태그들 */}
               {(selectedAreas.length > 0 || contractTypes.length > 0 || houseTypes.length > 0 || sizes.length > 0 || selectedKeywords.length > 0) && (
                 <div className="sticky top-0 z-40 bg-white flex flex-wrap gap-2 px-4 pt-4 pb-2 border-b border-gray-100">
@@ -1266,6 +1271,9 @@ const RegionMap = () => {
                   </button>
                 </div>
               </div>
+
+              </div>
+              
               <div className="px-4 pt-2 video-list">
                 <RegionMapList
                   videos={filteredVideos}

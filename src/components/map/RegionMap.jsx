@@ -1144,7 +1144,7 @@ const RegionMap = () => {
             {/* 리사이저 */}
             <div
               className="fixed left-0 right-0 h-12 flex items-center justify-center cursor-row-resize bg-white/80 backdrop-blur-sm z-40 rounded-full"
-              style={{ top: `${mapHeight-22}px` }}
+              style={{ top: `${mapHeight}px` }}
               onMouseDown={handleResizerMouseDown}
               onTouchStart={handleResizerMouseDown}
             >

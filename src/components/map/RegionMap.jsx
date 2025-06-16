@@ -1174,6 +1174,45 @@ const RegionMap = () => {
               {/* 상단 고정 통합 영역 */}
               <div className="sticky top-0 z-40 bg-white">
 
+                            {/* 정렬 바 */}
+              <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-4 border-b border-gray-100 z-10 shadow-sm flex flex-row justify-between items-center gap-2 w-full">
+                <div className="flex flex-row items-center justify-between gap-4 px-4 pb-4">
+                  <span className="text-black text-sm font-light whitespace-nowrap">{filteredVideos.length}개 집을 찾았어요</span>
+                </div>
+                <div className="flex flex-row gap-2 flex-shrink-0 justify-end">
+                  <button
+                    onClick={() => handleSort('date')}
+                    className={`px-3 py-1 rounded-full text-xs border transition-all hover:shadow-md ${
+                      sortType === 'date'
+                        ? 'bg-black text-white border-black'
+                        : 'bg-white text-black border-gray-300 hover:bg-gray-100'
+                    }`}
+                  >
+                    날짜순 {sortType === 'date' && (sortOrder === 'desc' ? '↓' : '↑')}
+                  </button>
+                  <button
+                    onClick={() => handleSort('price')}
+                    className={`px-3 py-1 rounded-full text-xs border transition-all hover:shadow-md ${
+                      sortType === 'price'
+                        ? 'bg-black text-white border-black'
+                        : 'bg-white text-black border-gray-300 hover:bg-gray-100'
+                    }`}
+                  >
+                    가격순 {sortType === 'price' && (sortOrder === 'desc' ? '↓' : '↑')}
+                  </button>
+                  <button
+                    onClick={() => handleSort('size')}
+                    className={`px-3 py-1 rounded-full text-xs border transition-all hover:shadow-md ${
+                      sortType === 'size'
+                        ? 'bg-black text-white border-black'
+                        : 'bg-white text-black border-gray-300 hover:bg-gray-100'
+                    }`}
+                  >
+                    크기순 {sortType === 'size' && (sortOrder === 'desc' ? '↓' : '↑')}
+                  </button>
+                </div>
+              </div>
+
               {/* 선택된 필터/키워드 태그들 */}
               {(selectedAreas.length > 0 || contractTypes.length > 0 || houseTypes.length > 0 || sizes.length > 0 || selectedKeywords.length > 0) && (
                 <div className="sticky top-0 z-40 bg-white flex flex-wrap gap-2 px-4 pt-4 pb-2 border-b border-gray-100">
@@ -1233,47 +1272,9 @@ const RegionMap = () => {
                   ))}
                 </div>
               )}
-              {/* 정렬 바 */}
-              <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-4 border-b border-gray-100 z-10 shadow-sm flex flex-row justify-between items-center gap-2 w-full">
-                <div className="flex flex-row items-center justify-between gap-4 px-4 pb-4">
-                  <span className="text-black text-sm font-light whitespace-nowrap">{filteredVideos.length}개 집을 찾았어요</span>
-                </div>
-                <div className="flex flex-row gap-2 flex-shrink-0 justify-end">
-                  <button
-                    onClick={() => handleSort('date')}
-                    className={`px-3 py-1 rounded-full text-xs border transition-all hover:shadow-md ${
-                      sortType === 'date'
-                        ? 'bg-black text-white border-black'
-                        : 'bg-white text-black border-gray-300 hover:bg-gray-100'
-                    }`}
-                  >
-                    날짜순 {sortType === 'date' && (sortOrder === 'desc' ? '↓' : '↑')}
-                  </button>
-                  <button
-                    onClick={() => handleSort('price')}
-                    className={`px-3 py-1 rounded-full text-xs border transition-all hover:shadow-md ${
-                      sortType === 'price'
-                        ? 'bg-black text-white border-black'
-                        : 'bg-white text-black border-gray-300 hover:bg-gray-100'
-                    }`}
-                  >
-                    가격순 {sortType === 'price' && (sortOrder === 'desc' ? '↓' : '↑')}
-                  </button>
-                  <button
-                    onClick={() => handleSort('size')}
-                    className={`px-3 py-1 rounded-full text-xs border transition-all hover:shadow-md ${
-                      sortType === 'size'
-                        ? 'bg-black text-white border-black'
-                        : 'bg-white text-black border-gray-300 hover:bg-gray-100'
-                    }`}
-                  >
-                    크기순 {sortType === 'size' && (sortOrder === 'desc' ? '↓' : '↑')}
-                  </button>
-                </div>
-              </div>
 
               </div>
-              
+
               <div className="px-4 pt-2 video-list">
                 <RegionMapList
                   videos={filteredVideos}

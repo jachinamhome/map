@@ -56,7 +56,7 @@ const RegionMapList = ({
               <p>{formatSize((video.type), video.size)}</p>
 
               {/* 4. 역 정보 */}
-              <p>{video.station}</p>
+              <p className="mb-2">{video.station}</p>
 
               {/* 5. 태그 정보 */}
               {video.tags && video.tags.length > 0 && (

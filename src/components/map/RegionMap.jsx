@@ -115,7 +115,10 @@ const RegionMap = () => {
   const [mapScale, setMapScale] = useState(isMobile ? 1.5 : 1.25);
 
   // 지도 위치 정보
-  const [mapPosition, setMapPosition] = useState({ x: 0, y: 0 });
+  const [mapPosition, setMapPosition] = useState({
+  x: typeof window !== 'undefined' && window.innerWidth >= 768 ? -80 : 0,
+  y: 0
+});
 
   // 드래그 중인지 여부
   const [isDragging, setIsDragging] = useState(false);

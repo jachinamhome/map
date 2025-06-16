@@ -37,7 +37,7 @@ const RegionMapList = ({
 
           {/* 부동산 정보 영역 */}
           <div className="p-5">
-            <div className="mt-1 text-sm text-gray-600 space-y-1">
+            <div className="mt-1 text-sm text-black space-y-1">
               {/* 1. 지역명 */}
               <p className="font-bold">{video.area}{video.area2 ? ` ${video.area2}` : ''}</p>
 
@@ -60,7 +60,7 @@ const RegionMapList = ({
 
               {/* 5. 태그 정보 */}
               {video.tags && video.tags.length > 0 && (
-                <p className="text-xs text-gray-500">{video.tags.join(', ')}</p>
+                <p className="text-xs text-black">{video.tags.join(', ')}</p>
               )}
             </div>
 

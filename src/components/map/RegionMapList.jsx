@@ -52,17 +52,17 @@ const RegionMapList = ({
 
               {/* 2. 가격 및 계약 */}
               <div className="flex items-center gap-1">
-                <FaWonSign className="w-4 h-4 text-gray-500" />
+                <FaWonSign className="w-3 h-3 text-gray-500" />
                 {video.contract === '월세' ? (
-                  <p className="font-bold text-black">
+                  <p className="font-bold text-base text-black">
                     {video.contract} {formatDeposit(video.deposit ?? 0)}/{video.rent}
                   </p>
                 ) : video.contract === '전세' ? (
-                  <p className="font-bold text-black">
+                  <p className="font-bold text-base text-black">
                     {video.contract} {formatDeposit(video.deposit ?? 0)}
                   </p>
                 ) : video.contract === '매매' ? (
-                  <p className="font-bold text-black">
+                  <p className="font-bold text-base text-black">
                     {video.contract} {formatDeposit(video.deposit ?? video.sale ?? 0)}
                   </p>
                 ) : null}
@@ -77,7 +77,7 @@ const RegionMapList = ({
               {/* 4. 인근역 */}
               <div className="flex items-center gap-1 mb-2">
                 <GiSubway className="w-4 h-4 text-gray-500" />
-                <p>{video.station}</p>
+                <p className="font-medium text-base text-gray-500">{video.station}</p>
               </div>
 
               {/* 5. 태그 */}

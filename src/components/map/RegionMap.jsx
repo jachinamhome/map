@@ -1143,12 +1143,12 @@ const RegionMap = () => {
 
             {/* 리사이저 */}
             <div
-              className="fixed left-0 right-0 h-12 flex items-center justify-center cursor-row-resize bg-white/80 backdrop-blur-sm z-40 rounded-full"
+              className="fixed left-0 right-0 h-6 flex items-center justify-center cursor-row-resize bg-white/80 backdrop-blur-sm z-40 rounded-full"
               style={{ top: `${mapHeight}px` }}
               onMouseDown={handleResizerMouseDown}
               onTouchStart={handleResizerMouseDown}
             >
-              <div className="w-18 h-2 bg-gray-200 rounded-full shadow-sm" />
+              <div className="w-24 h-1 bg-gray-200 rounded-full shadow-sm mb-2" />
             </div>
             {/* 비디오 목록 */}
             <div

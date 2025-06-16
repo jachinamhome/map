@@ -512,9 +512,9 @@ const RegionMap = () => {
           area.parentNode.appendChild(textElement);
 
           // 기본 스타일 설정
-          area.style.fill = '#cdcccc';
+          area.style.fill = '#e0e0e0';
           area.style.stroke = '#ffffff';
-          area.style.strokeWidth = '1';
+          area.style.strokeWidth = '2';
           area.style.transition = 'all 0.3s ease';
           area.style.cursor = 'pointer';
 
@@ -571,7 +571,7 @@ const RegionMap = () => {
 
     // 모든 영역을 기본 색상으로 초기화
     Object.values(window.areaMap).forEach(area => {
-      area.style.fill = '#cdcccc';
+      area.style.fill = '#e0e0e0';
     });
 
     // 선택된 영역 색상 변경
@@ -579,7 +579,7 @@ const RegionMap = () => {
       // 원본 ID로 매칭 시도
       const area = window.areaMap[selectedId];
       if (area) {
-        area.style.fill = '#ffcccc';
+        area.style.fill = '#FFD900';
         console.log(`영역 색상 변경 성공: ${selectedId}`); // 디버깅용 로그
       } else {
         // 정규화된 ID로 매칭 시도
@@ -588,7 +588,7 @@ const RegionMap = () => {
           id.replace(/\s+/g, '').replace(/[^\w가-힣]/g, '') === normalizedSelectedId
         );
         if (normalizedArea) {
-          normalizedArea[1].style.fill = '#ffcccc';
+          normalizedArea[1].style.fill = '#FFD900';
           console.log(`영역 색상 변경 성공 (정규화): ${selectedId}`); // 디버깅용 로그
         } else {
           console.log(`영역을 찾을 수 없음: ${selectedId}`); // 디버깅용 로그
@@ -604,7 +604,7 @@ const RegionMap = () => {
           id.replace(/\s+/g, '').replace(/[^\w가-힣]/g, '') === normalizedHoveredArea
         )?.[1];
       if (hoveredElement && !selectedAreas.includes(normalizedHoveredArea)) {
-        hoveredElement.style.fill = '#ffcccc';
+        hoveredElement.style.fill = '#FFD900';
       }
     }
   };
@@ -1107,7 +1107,7 @@ const RegionMap = () => {
                 </button>
               </div>
               {/* 확대/축소 버튼 - 모바일은 우측, 데스크탑은 우측 */}
-              <div className={`fixed z-20 flex flex-col gap-2 ${isMobile ? 'top-24 right-6' : 'top-4 right-4'}`}>
+              <div className={`fixed z-20 flex flex-col gap-2 ${isMobile ? 'top-30 right-6' : 'top-4 right-4'}`}>
                 {/* <button onClick={handleScaleUp} className="bg-white/90 border border-blue-300 text-blue-500 rounded-full p-2 shadow-lg hover:bg-blue-50 transition-colors"><FaPlus /></button>
                 <button onClick={handleScaleDown} className="bg-white/90 border border-blue-300 text-blue-500 rounded-full p-2 shadow-lg hover:bg-blue-50 transition-colors"><FaMinus /></button> */}
                 <button onClick={handleScaleUp} className="bg-white/90 border border-gray-300 text-gray-500 rounded-full p-2 shadow-lg hover:bg-gray-50 transition-colors"><FaPlus /></button>

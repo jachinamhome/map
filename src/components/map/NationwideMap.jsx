@@ -147,7 +147,7 @@ const NationwideMap = () => {
               const region = regionMap[regionId];
               if (region) {
                 // 내부 색상만 변경
-                region.style.fill = '#ffcccc';
+                region.style.fill = '#FFD900';
 
                 // 내부 지역 처리 - 내부 지역은 하이라이트하지 않음
                 if (containedRegions[regionId]) {

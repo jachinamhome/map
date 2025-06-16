@@ -403,14 +403,9 @@ const RegionMap = () => {
 
   // 지도 접힘/펼침 상태 변경 시 위치 초기화
   useEffect(() => {
-    setMapPosition({ x: 0, y: 0 });
-    setMapScale(1.5); // 50% 확대
-    if (!mapFolded && svgLoaded) {
-      const svgElement = svgContainerRef.current?.querySelector('svg');
-      if (svgElement) {
-        svgElement.style.display = 'block';
-      }
-    }
+  setMapPosition({ x: 0, y: 0 });  // ← 이 줄 수정
+  setMapScale(1.5);
+  ...
   }, [mapFolded]);
 
   // 필터 패널 외부 클릭 시 닫기

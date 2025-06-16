@@ -115,10 +115,7 @@ const RegionMap = () => {
   const [mapScale, setMapScale] = useState(isMobile ? 1.5 : 1.25);
 
   // 지도 위치 정보
-  const [mapPosition, setMapPosition] = useState({
-  x: typeof window !== 'undefined' && window.innerWidth >= 768 ? -80 : 0,
-  y: 0
-});
+  const [mapPosition, setMapPosition] = useState({ x: 0, y: 0 });
 
   // 드래그 중인지 여부
   const [isDragging, setIsDragging] = useState(false);
@@ -403,9 +400,14 @@ const RegionMap = () => {
 
   // 지도 접힘/펼침 상태 변경 시 위치 초기화
   useEffect(() => {
-  setMapPosition({ x: 0, y: 0 });  // ← 이 줄 수정
-  setMapScale(1.5);
-  ...
+    setMapPosition({ x: 0, y: 0 });
+    setMapScale(1.5); // 50% 확대
+    if (!mapFolded && svgLoaded) {
+      const svgElement = svgContainerRef.current?.querySelector('svg');
+      if (svgElement) {
+        svgElement.style.display = 'block';
+      }
+    }
   }, [mapFolded]);
 
   // 필터 패널 외부 클릭 시 닫기

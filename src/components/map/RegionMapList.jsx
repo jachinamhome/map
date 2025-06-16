@@ -71,13 +71,13 @@ const RegionMapList = ({
               {/* 3. 형태 + 실평수 */}
               <div className="flex items-center gap-1">
                 <TbBuildingCommunity className="w-4 h-4 text-gray-500" />
-                <p>{formatSize((video.type), video.size)}</p>
+                <p className="font-medium text-sm text-black">{formatSize((video.type), video.size)}</p>
               </div>
 
               {/* 4. 인근역 */}
               <div className="flex items-center gap-1 mb-2">
                 <GiSubway className="w-4 h-4 text-gray-500" />
-                <p className="font-medium text-base text-gray-500">{video.station}</p>
+                <p className="font-medium text-sm text-gray-500">{video.station}</p>
               </div>
 
               {/* 5. 태그 */}

@@ -44,11 +44,11 @@ const RegionMapList = ({
               {/* 2. 가격 및 계약 정보 */}
               {(
                 video.contract === '월세' ? (
-                  <p className="font-bold text-x2">{video.contract} {formatDeposit(video.deposit ?? 0)}/{video.rent}</p>
+                  <p className="font-bold text-2xl">{video.contract} {formatDeposit(video.deposit ?? 0)}/{video.rent}</p>
                 ) : video.contract === '전세' ? (
-                  <p className="font-bold text-x2">{video.contract} {formatDeposit(video.deposit ?? 0)}</p>
+                  <p className="font-bold text-2xl">{video.contract} {formatDeposit(video.deposit ?? 0)}</p>
                 ) : video.contract === '매매' ? (
-                  <p className="font-bold text-x2">{video.contract} {formatDeposit(video.deposit ?? video.sale ?? 0)}</p>
+                  <p className="font-bold text-2xl">{video.contract} {formatDeposit(video.deposit ?? video.sale ?? 0)}</p>
                 ) : null
               )}
 

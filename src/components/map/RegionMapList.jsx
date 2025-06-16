@@ -9,7 +9,7 @@
  */
 import { FaYoutube } from 'react-icons/fa';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
-import { FaWonSign } from 'react-icons/fa6';
+import { FaWonSign } from "react-icons/fa6";
 import { TbBuildingCommunity } from 'react-icons/tb';
 import { LuRuler } from 'react-icons/lu';
 import { GiSubway } from 'react-icons/gi';
@@ -42,28 +42,28 @@ const RegionMapList = ({
 
           {/* 부동산 정보 영역 */}
           <div className="p-5">
-            <div className="text-sm text-black space-y-1">
+            <div className="text-base text-black space-y-1">
 
               {/* 1. 지역 */}
               <div className="flex items-center gap-1">
                 <HiOutlineLocationMarker className="w-4 h-4 text-gray-500" />
-                <p className="font-bold">{video.area}{video.area2 ? ` ${video.area2}` : ''}</p>
+                <p className="font-bold text-sm">{video.area}{video.area2 ? ` ${video.area2}` : ''}</p>
               </div>
 
               {/* 2. 가격 및 계약 */}
               {video.contract && (video.deposit) && (
               <div className="flex items-center gap-1">
-                <FaWonSign className="w-3 h-3 text-gray-500 mr-1" />
-                {video.contract === '월세' ? (
-                  <p className="font-bold text-base text-black">
+                <FaWonSign className="w-4 h-4 text-gray-500 pt-1" />
+                {video.contract === '월세' || video.contract === '반전세' ? (
+                  <p className="font-bold text-xl text-black">
                     {video.contract} {formatDeposit(video.deposit ?? 0)}/{video.rent}
                   </p>
                 ) : video.contract === '전세' ? (
-                  <p className="font-bold text-base text-black">
+                  <p className="font-bold text-xl text-black">
                     {video.contract} {formatDeposit(video.deposit ?? 0)}
                   </p>
                 ) : video.contract === '매매' ? (
-                  <p className="font-bold text-base text-black">
+                  <p className="font-bold text-xl text-black">
                     {video.contract} {formatDeposit(video.deposit ?? video.sale ?? 0)}
                   </p>
                 ) : null}
@@ -74,7 +74,7 @@ const RegionMapList = ({
               {video.type && (video.size) && (
               <div className="flex items-center gap-1">
                 <TbBuildingCommunity className="w-4 h-4 text-gray-500" />
-                <p className="font-medium text-sm text-black">{formatSize((video.type), video.size)}</p>
+                <p className="font-medium text-black">{formatSize((video.type), video.size)}</p>
               </div>
               )}
 
@@ -82,17 +82,17 @@ const RegionMapList = ({
               {video.station && (
               <div className="flex items-center gap-1">
                 <GiSubway className="w-4 h-4 text-gray-500" />
-                <p className="font-medium text-xs text-gray-500"> {video.station}</p>
+                <p className="font-medium text-sm text-gray-500">{video.station}</p>
               </div>
               )}
 
               {/* 5. 태그 */}
               {video.tags && video.tags.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-2">
+                <div className="flex flex-wrap gap-1 mt-3">
                   {video.tags.map((tag, i) => (
                     <span
                       key={i}
-                      className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full"
+                      className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded"
                     >
                       {tag}
                     </span>

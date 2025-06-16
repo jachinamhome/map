@@ -112,7 +112,7 @@ const RegionMap = () => {
   // 지도 접힘 상태
   const [mapFolded, setMapFolded] = useState(false);
 
-  // 지도 확대/축소 비율 (모바일: 1.5배, 데스크톱: 1.25배)
+  // 지도 확대/축소 비율 (모바일: 1.5배, 데스크톱: 1배)
   const [mapScale, setMapScale] = useState(isMobile ? 1.5 : 1.25);
 
   // 지도 위치 정보
@@ -700,6 +700,12 @@ const RegionMap = () => {
   };
 
 
+  // 계약 유형 키워드 필터
+    const contractTypeKeywords = {
+    '월세': ['월세', '반전세'],
+    '전세': ['전세'],
+    '매매': ['매매']
+  };
 
   // 주거 유형 키워드 필터
     const houseTypeKeywords = {
@@ -733,9 +739,14 @@ const RegionMap = () => {
     }
 
     // 계약 유형 필터
-    if (contractTypes.length > 0 && !contractTypes.includes(video.contract)) {
-      return false;
-    }
+      if (contractTypes.length > 0) {
+        const videoContract = video.contract;
+        const match = contractTypes.some(selected => {
+          const keywords = contractTypeKeywords[selected] || [];
+          return keywords.includes(videoContract);
+        });
+        if (!match) return false;
+      }
 
     // 주거 유형 필터
     if (houseTypes.length > 0) {
@@ -818,17 +829,17 @@ const RegionMap = () => {
           return multiplier * (new Date(b.date || 0) - new Date(a.date || 0));
 
         case 'price':
-          const getPrice = (video) => {
-            if (video.contract === '월세') {
-              return (video.deposit || 0) + ((video.rent || 0) * 200);
-            } else if (video.contract === '전세') {
-              return video.deposit || 0;
-            } else if (video.contract === '매매') {
-              return video.sale || video.deposit || 0;
-            }
-            return 0;
-          };
-          return multiplier * (getPrice(a) - getPrice(b));
+        const getPrice = (video) => {
+          if (['월세', '반전세'].includes(video.contract)) {
+            return (video.deposit || 0) + ((video.rent || 0) * 200);
+          } else if (video.contract === '전세') {
+            return video.deposit || 0;
+          } else if (video.contract === '매매') {
+            return video.sale || video.deposit || 0;
+          }
+          return 0;
+        };
+        return multiplier * (getPrice(a) - getPrice(b));
 
         case 'size':
           return multiplier * ((a.size || 0) - (b.size || 0));

@@ -1107,7 +1107,7 @@ const RegionMap = () => {
                 </button>
               </div>
               {/* 확대/축소 버튼 - 모바일은 우측, 데스크탑은 우측 */}
-              <div className={`fixed z-20 flex flex-col gap-2 ${isMobile ? 'top-24 right-6' : 'top-4 right-4'}`}>
+              <div className={`fixed z-20 flex flex-col gap-2 ${isMobile ? 'top-40 right-6' : 'top-4 right-4'}`}>
                 {/* <button onClick={handleScaleUp} className="bg-white/90 border border-blue-300 text-blue-500 rounded-full p-2 shadow-lg hover:bg-blue-50 transition-colors"><FaPlus /></button>
                 <button onClick={handleScaleDown} className="bg-white/90 border border-blue-300 text-blue-500 rounded-full p-2 shadow-lg hover:bg-blue-50 transition-colors"><FaMinus /></button> */}
                 <button onClick={handleScaleUp} className="bg-white/90 border border-gray-300 text-gray-500 rounded-full p-2 shadow-lg hover:bg-gray-50 transition-colors"><FaPlus /></button>
@@ -1144,7 +1144,7 @@ const RegionMap = () => {
             {/* 리사이저 */}
             <div
               className="fixed left-0 right-0 h-10 flex items-center justify-center cursor-row-resize bg-white/80 backdrop-blur-sm z-40 rounded-full"
-              style={{ top: `${mapHeight - 12}px` }}
+              style={{ top: `${mapHeight - 16}px` }}
               onMouseDown={handleResizerMouseDown}
               onTouchStart={handleResizerMouseDown}
             >

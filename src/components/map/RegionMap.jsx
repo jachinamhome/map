@@ -1215,7 +1215,7 @@ const RegionMap = () => {
 
               {/* 선택된 필터/키워드 태그들 */}
               {(selectedAreas.length > 0 || contractTypes.length > 0 || houseTypes.length > 0 || sizes.length > 0 || selectedKeywords.length > 0) && (
-                <div className="sticky top-0 z-40 bg-white flex flex-wrap gap-2 px-4 pt-4 pb-2 border-b border-gray-100">
+                <div className="sticky top-0 z-40 bg-white flex flex-wrap gap-2 px-4 pt-4 pb-4 border-b border-gray-100">
                   {selectedAreas.map(area => (
                     <span key={area} className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs flex items-center">
                       {area}
@@ -1461,7 +1461,7 @@ const RegionMap = () => {
 
               {/* 선택된 필터/키워드 태그들 */}
               {(selectedAreas.length > 0 || contractTypes.length > 0 || houseTypes.length > 0 || sizes.length > 0 || selectedKeywords.length > 0) && (
-                <div className="flex flex-wrap gap-2 px-4 pt-4 pb-2 border-b border-gray-100">
+                <div className="flex flex-wrap gap-2 px-4 pt-4 pb-4 border-b border-gray-100">
                   {selectedAreas.map(area => (
                     <span key={area} className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs flex items-center">
                       {area}

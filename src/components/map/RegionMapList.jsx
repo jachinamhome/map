@@ -54,15 +54,15 @@ const RegionMapList = ({
               <div className="flex items-center gap-1">
                 <FaWonSign className="w-4 h-4 text-gray-500" />
                 {video.contract === '월세' ? (
-                  <p className="font-medium text-xl text-black">
+                  <p className="font-bold text-black">
                     {video.contract} {formatDeposit(video.deposit ?? 0)}/{video.rent}
                   </p>
                 ) : video.contract === '전세' ? (
-                  <p className="font-medium text-xl text-black">
+                  <p className="font-bold text-black">
                     {video.contract} {formatDeposit(video.deposit ?? 0)}
                   </p>
                 ) : video.contract === '매매' ? (
-                  <p className="font-medium text-xl text-black">
+                  <p className="font-bold text-black">
                     {video.contract} {formatDeposit(video.deposit ?? video.sale ?? 0)}
                   </p>
                 ) : null}

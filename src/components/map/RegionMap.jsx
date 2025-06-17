@@ -1185,27 +1185,27 @@ useEffect(() => {
               )}*/}
             </div>
 
-
-<div
-  ref={scrollRef}  
-  className="fixed left-0 right-0 bottom-0 z-30 bg-white/90 shadow-2xl overflow-y-auto"
-  style={{
-    top: `${mapHeight}px`, // ← mapHeight로 위에서부터 내려온 높이
-    height: `calc(100dvh - ${mapHeight}px)`,
-    transition: 'top 0.3s ease, height 0.3s ease',
-    touchAction: 'pan-y',
-    display: 'flex',
-    flexDirection: 'column'
-  }}
->
-  {/* 핸들바 (상단 고정) */}
-  <div
-    className="w-full h-6 flex items-center justify-center cursor-row-resize sticky top-0 z-50 bg-white/90 backdrop-blur-sm"
-    onMouseDown={handleResizerMouseDown}
-    onTouchStart={handleResizerMouseDown}
-  >
-    <div className="w-14 h-1.5 bg-gray-300 rounded-full shadow-sm" />
-  </div>
+            {/* 비디오 목록 */}
+            <div
+              ref={scrollRef}  
+              className="fixed left-0 right-0 bottom-0 z-30 bg-white/90 shadow-2xl overflow-y-auto"
+              style={{
+                top: `${mapHeight}px`, // ← mapHeight로 위에서부터 내려온 높이
+                height: `calc(100dvh - ${mapHeight}px)`,
+                transition: 'top 0.3s ease, height 0.3s ease',
+                touchAction: 'pan-y',
+                display: 'flex',
+                flexDirection: 'column'
+              }}
+            >
+              {/* 리사이저 */}
+              <div
+                className="w-full h-8 flex items-center justify-center cursor-row-resize sticky top-0 z-50 bg-white"
+                onMouseDown={handleResizerMouseDown}
+                onTouchStart={handleResizerMouseDown}
+              >
+                <div className="w-10 h-1.5 bg-gray-400 rounded-full shadow-sm" />
+              </div>
 
               {/* 상단 고정 통합 영역 */}
               <div className="sticky top-0 z-40 bg-white">

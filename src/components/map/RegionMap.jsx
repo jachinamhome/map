@@ -1209,7 +1209,7 @@ useEffect(() => {
                 onMouseDown={handleResizerMouseDown}
                 onTouchStart={handleResizerMouseDown}
               >
-                <div className="w-10 h-1.5 my-10 bg-gray-200 z-70 rounded-full" />
+                <div className="w-10 h-1.5 py-4 bg-gray-200 z-70 rounded-full" />
               </div>
 
 

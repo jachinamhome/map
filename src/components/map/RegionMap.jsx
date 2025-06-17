@@ -584,11 +584,11 @@ useEffect(() => {
       window.requestAnimationFrame(() => {
         const scrollTop = scrollEl.scrollTop;
 
-        if (!autoExpanded && scrollTop > 30) {
+        if (!autoExpanded && scrollTop < 30) {
           setMapHeight(window.innerHeight * 0.6); // 최대 확장
           setMapFolded(false);
           setAutoExpanded(true);
-        } else if (autoExpanded && scrollTop < 10) {
+        } else if (autoExpanded && scrollTop > 10) {
           setMapHeight(80); // 최소 축소
           setMapFolded(true);
           setAutoExpanded(false);
@@ -1219,17 +1219,11 @@ useEffect(() => {
                   }
                 }}
                 onWheel={(e) => {
-                  const direction = e.deltaY;
-                  const container = e.currentTarget;
-
-                  if (!autoExpanded && direction > 0) {
-                    // 휠 아래 → 확장
-                    setMapHeight(100);
-                    setAutoExpanded(true);
-                  } else if (autoExpanded && direction < 0 && container.scrollTop <= 0) {
-                    // 휠 위 + 최상단 → 축소
-                    setMapHeight(48);
-                    setAutoExpanded(false);
+                  if (e.target.closest('.video-list')) {
+                    e.stopPropagation();
+                    const container = e.currentTarget;
+                    const scrollAmount = e.deltaY;
+                    container.scrollTop += scrollAmount;
                   }
                 }}
               >

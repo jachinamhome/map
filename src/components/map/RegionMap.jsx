@@ -1188,7 +1188,7 @@ useEffect(() => {
             {/* 비디오 목록 */}
             <div
               ref={scrollRef}  
-              className="fixed left-0 right-0 bottom-0 z-30 bg-white/90 shadow-2xl overflow-y-auto"
+              className="fixed top-20 left-0 right-0 bottom-0 z-30 bg-white/90 shadow-2xl overflow-y-auto"
               style={{
                 top: `${mapHeight}px`, // ← mapHeight로 위에서부터 내려온 높이
                 height: `calc(100dvh - ${mapHeight}px)`,
@@ -1205,21 +1205,16 @@ useEffect(() => {
 
               {/* 리사이저 */}
               <div
-                className="relative w-full flex items-center justify-center z-50 bg-white"
-                style={{
-                  height: '48px',           // 핸들바 전체 영역
-                  paddingTop: '4px',        // 상단 여백
-                  paddingBottom: '8px'      // 하단 여백
-                }}
+                className="sticky top-0 w-full h-18 bg-white/90 flex items-center justify-center z-50"
                 onMouseDown={handleResizerMouseDown}
                 onTouchStart={handleResizerMouseDown}
               >
-                <div className="w-10 h-1.5 bg-gray-200 rounded-full shadow-sm" />
+                <div className="w-10 h-1.5 py-4 bg-gray-200 z-70 rounded-full" />
               </div>
 
 
               {/* 정렬 바 */}
-              <div className="sticky top-0 bg-white/90 backdrop-blur-sm p-4 border-b border-gray-100 z-10 shadow-sm flex flex-row justify-between items-center gap-2 w-full">
+              <div className="sticky top-10 bg-white/90 backdrop-blur-sm p-4 border-b border-gray-100 z-10 shadow-sm flex flex-row justify-between items-center gap-2 w-full">
                 <div className="flex flex-row items-center font-bold justify-between gap-4 pb-4">
                   <span className="text-gray-500 text-sm whitespace-nowrap">{filteredVideos.length}개 집을 찾았어요</span>
                 </div>

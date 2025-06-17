@@ -10,6 +10,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ko">
+
+      <head>
+        <meta name="theme-color" content="#FFE066" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      </head>
+
       <body className="bg-background text-foreground">
         <div className="min-h-screen flex flex-col">
           <main className="flex-1 flex flex-col">

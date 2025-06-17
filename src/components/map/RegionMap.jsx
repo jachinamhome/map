@@ -1186,52 +1186,26 @@ useEffect(() => {
             </div>
 
 
-            {/* 리사이저 */}
-            <div
-              className="fixed left-0 right-0 bottom-50 h-40 flex items-center justify-center cursor-row-resize bg-white backdrop-blur-sm z-40 rounded-2xl"
-              style={{ top: `${mapHeight - 24}px`,
-              transition: 'top 0.3s ease'
-             }}
-              onMouseDown={handleResizerMouseDown}
-              onTouchStart={handleResizerMouseDown}
-            >
-              <div className="w-24 h-1 bg-gray-200 rounded-full shadow-sm mb-4" />
-            </div>
-
-
-            {/* 비디오 목록 */}
-              <div
-                ref={scrollRef}  
-                className="fixed left-0 right-0 bottom-0 z-30 bg-white/90 shadow-2xl overflow-y-auto"
-                style={{
-                  top: `${mapHeight + 14}px`,
-                  touchAction: 'pan-y',
-                  transition: 'top 0.3s ease' 
-                }}
-                onPointerDown={(e) => {
-                  if (e.target.closest('.video-list')) {
-                    e.stopPropagation();
-                  }
-                }}
-                onPointerMove={(e) => {
-                  if (e.target.closest('.video-list')) {
-                    e.stopPropagation();
-                  }
-                }}
-                onPointerUp={(e) => {
-                  if (e.target.closest('.video-list')) {
-                    e.stopPropagation();
-                  }
-                }}
-                onWheel={(e) => {
-                  if (e.target.closest('.video-list')) {
-                    e.stopPropagation();
-                    const container = e.currentTarget;
-                    const scrollAmount = e.deltaY;
-                    container.scrollTop += scrollAmount;
-                  }
-                }}
-              >
+<div
+  ref={scrollRef}  
+  className="fixed left-0 right-0 bottom-0 z-30 bg-white/90 shadow-2xl overflow-y-auto"
+  style={{
+    top: `${mapHeight}px`, // ← mapHeight로 위에서부터 내려온 높이
+    height: `calc(100dvh - ${mapHeight}px)`,
+    transition: 'top 0.3s ease, height 0.3s ease',
+    touchAction: 'pan-y',
+    display: 'flex',
+    flexDirection: 'column'
+  }}
+>
+  {/* 핸들바 (상단 고정) */}
+  <div
+    className="w-full h-6 flex items-center justify-center cursor-row-resize sticky top-0 z-50 bg-white/90 backdrop-blur-sm"
+    onMouseDown={handleResizerMouseDown}
+    onTouchStart={handleResizerMouseDown}
+  >
+    <div className="w-14 h-1.5 bg-gray-300 rounded-full shadow-sm" />
+  </div>
 
               {/* 상단 고정 통합 영역 */}
               <div className="sticky top-0 z-40 bg-white">

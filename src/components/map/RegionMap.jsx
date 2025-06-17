@@ -1198,7 +1198,11 @@ useEffect(() => {
                 flexDirection: 'column'
               }}
             >
-              {/* 리사이저 */}
+
+              {/* 상단 고정 통합 영역 */}
+              <div className="sticky top-0 z-40 bg-white">
+
+               {/* 리사이저 */}
               <div
                 className="w-full h-8 flex items-center justify-center sticky top-0 z-50 pd-2"
                 onMouseDown={handleResizerMouseDown}
@@ -1207,8 +1211,6 @@ useEffect(() => {
                 <div className="w-10 h-1.5 bg-gray-200 rounded-full" />
               </div>
 
-              {/* 상단 고정 통합 영역 */}
-              <div className="sticky top-0 z-40 bg-white">
 
               {/* 정렬 바 */}
               <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-4 border-b border-gray-100 z-10 shadow-sm flex flex-row justify-between items-center gap-2 w-full">

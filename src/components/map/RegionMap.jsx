@@ -161,7 +161,6 @@ const RegionMap = () => {
 const [autoExpanded, setAutoExpanded] = useState(false); // 자동 확장 상태
 const scrollRef = useRef(null); // 영상 리스트 스크롤 요소 참조
 
-
   // 필터 옵션 상수 정의
   const contractOptions = ['월세', '전세', '매매'];  // 계약 유형 옵션
   const houseTypeOptions = ['원룸', '빌라/투룸+', '오피스텔', '아파트'];  // 주거 유형 옵션
@@ -1186,11 +1185,19 @@ useEffect(() => {
               )}*/}
             </div>
 
-
+            {/* 리사이저 */}
+            <div
+              className="fixed left-0 right-0 h-10 flex items-center justify-center cursor-row-resize bg-white/80 backdrop-blur-sm z-40 rounded-full"
+              style={{ top: `${mapHeight - 16}px` }}
+              onMouseDown={handleResizerMouseDown}
+              onTouchStart={handleResizerMouseDown}
+            >
+              <div className="w-24 h-1 bg-gray-200 rounded-full shadow-sm mb-4" />
+            </div>
             {/* 비디오 목록 */}
               <div
                 ref={scrollRef}  
-                className="fixed left-0 right-0 bottom-0 z-30 bg-white/95 shadow-2xl overflow-y-auto"
+                className="fixed left-0 right-0 bottom-0 z-30 bg-white/90 shadow-2xl overflow-y-auto"
                 style={{
                   top: `${mapHeight + 8}px`,
                   touchAction: 'pan-y',
@@ -1220,15 +1227,7 @@ useEffect(() => {
                   }
                 }}
               >
-                
-              {/* 리사이저 */}
-              <div
-                className="w-full h-10 flex items-center justify-center cursor-row-resize bg-white/80 backdrop-blur-sm z-10"
-                onMouseDown={handleResizerMouseDown}
-                onTouchStart={handleResizerMouseDown}
-              >
-                <div className="w-24 h-1 bg-gray-300 rounded-full shadow-sm" />
-              </div>
+
 
               {/* 상단 고정 통합 영역 */}
               <div className="sticky top-0 z-40 bg-white">
@@ -1334,7 +1333,7 @@ useEffect(() => {
 
               </div>
 
-              <div className="px-4 pt-2 video-list">
+              <div className="px-4 py-4 video-list">
                 <RegionMapList
                   videos={filteredVideos}
                   getSortedVideos={getSortedVideos}
@@ -1345,8 +1344,6 @@ useEffect(() => {
             </div>
           </>
         ) : (
-
-
           // 데스크탑: 리스트와 지도 영역 분리
           <div className="flex h-screen">
 

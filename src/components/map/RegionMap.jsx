@@ -1205,11 +1205,16 @@ useEffect(() => {
 
               {/* 리사이저 */}
               <div
-                className="sticky top-0 w-full h-18 bg-white/90 flex items-center justify-center z-50"
+                className="relative w-full flex items-center justify-center z-50 bg-white"
+                style={{
+                  height: '48px',           // 핸들바 전체 영역
+                  paddingTop: '4px',        // 상단 여백
+                  paddingBottom: '8px'      // 하단 여백
+                }}
                 onMouseDown={handleResizerMouseDown}
                 onTouchStart={handleResizerMouseDown}
               >
-                <div className="w-10 h-1.5 py-4 bg-gray-200 z-70 rounded-full" />
+                <div className="w-10 h-1.5 bg-gray-200 rounded-full shadow-sm" />
               </div>
 
 

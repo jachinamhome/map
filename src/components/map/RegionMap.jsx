@@ -24,6 +24,11 @@ import RegionMapKeyword from './RegionMapKeyword';
 import RegionSelectModal from './RegionSelectModal';
 import { Button } from '../ui/button';
 
+
+const [autoExpanded, setAutoExpanded] = useState(false); // 자동 확장 상태
+const scrollRef = useRef(null); // 영상 리스트 스크롤 요소 참조
+
+
 // 하단 리스트의 기본 높이 (픽셀 단위)
 const LIST_HEIGHT = 260;
 
@@ -562,6 +567,44 @@ const RegionMap = () => {
       window.areaMap = null;
     };
   }, [regionId, isMobile]);
+
+
+// 자동 스크롤 확장/축소 감지
+useEffect(() => {
+  if (!isMobile) return;
+
+  const scrollEl = scrollRef.current;
+  if (!scrollEl) return;
+
+  let ticking = false;
+
+  const handleScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrollTop = scrollEl.scrollTop;
+
+        if (!autoExpanded && scrollTop > 30) {
+          setMapHeight(window.innerHeight * 0.6); // 최대 확장
+          setMapFolded(false);
+          setAutoExpanded(true);
+        } else if (autoExpanded && scrollTop < 10) {
+          setMapHeight(80); // 최소 축소
+          setMapFolded(true);
+          setAutoExpanded(false);
+        }
+
+        ticking = false;
+      });
+
+      ticking = true;
+    }
+  };
+
+  scrollEl.addEventListener("scroll", handleScroll);
+  return () => scrollEl.removeEventListener("scroll", handleScroll);
+}, [autoExpanded, isMobile]);
+
+
 
   // 선택된 지역 하이라이트 함수
   const updateSelectedAreasHighlight = () => {
@@ -1151,36 +1194,38 @@ const RegionMap = () => {
               <div className="w-24 h-1 bg-gray-200 rounded-full shadow-sm mb-4" />
             </div>
             {/* 비디오 목록 */}
-            <div
-              className="fixed left-0 right-0 bottom-0 z-30 bg-white/95 shadow-2xl overflow-y-auto"
-              style={{
-                top: `${mapHeight + 8}px`,
-                touchAction: 'pan-y'
-              }}
-              onPointerDown={(e) => {
-                if (e.target.closest('.video-list')) {
-                  e.stopPropagation();
-                }
-              }}
-              onPointerMove={(e) => {
-                if (e.target.closest('.video-list')) {
-                  e.stopPropagation();
-                }
-              }}
-              onPointerUp={(e) => {
-                if (e.target.closest('.video-list')) {
-                  e.stopPropagation();
-                }
-              }}
-              onWheel={(e) => {
-                if (e.target.closest('.video-list')) {
-                  e.stopPropagation();
-                  const container = e.currentTarget;
-                  const scrollAmount = e.deltaY;
-                  container.scrollTop += scrollAmount;
-                }
-              }}
-            >
+              <div
+                ref={scrollRef}  
+                className="fixed left-0 right-0 bottom-0 z-30 bg-white/95 shadow-2xl overflow-y-auto"
+                style={{
+                  top: `${mapHeight + 8}px`,
+                  touchAction: 'pan-y',
+                  transition: 'top 0.3s ease' 
+                }}
+                onPointerDown={(e) => {
+                  if (e.target.closest('.video-list')) {
+                    e.stopPropagation();
+                  }
+                }}
+                onPointerMove={(e) => {
+                  if (e.target.closest('.video-list')) {
+                    e.stopPropagation();
+                  }
+                }}
+                onPointerUp={(e) => {
+                  if (e.target.closest('.video-list')) {
+                    e.stopPropagation();
+                  }
+                }}
+                onWheel={(e) => {
+                  if (e.target.closest('.video-list')) {
+                    e.stopPropagation();
+                    const container = e.currentTarget;
+                    const scrollAmount = e.deltaY;
+                    container.scrollTop += scrollAmount;
+                  }
+                }}
+              >
 
 
               {/* 상단 고정 통합 영역 */}

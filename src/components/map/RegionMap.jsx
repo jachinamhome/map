@@ -1186,15 +1186,7 @@ useEffect(() => {
               )}*/}
             </div>
 
-            {/* 리사이저 */}
-            <div
-              className="fixed left-0 right-0 h-10 flex items-center justify-center cursor-row-resize bg-white/80 backdrop-blur-sm z-40 rounded-full"
-              style={{ top: `${mapHeight - 16}px` }}
-              onMouseDown={handleResizerMouseDown}
-              onTouchStart={handleResizerMouseDown}
-            >
-              <div className="w-24 h-1 bg-gray-200 rounded-full shadow-sm mb-4" />
-            </div>
+
             {/* 비디오 목록 */}
               <div
                 ref={scrollRef}  
@@ -1228,7 +1220,15 @@ useEffect(() => {
                   }
                 }}
               >
-
+                
+              {/* 리사이저 */}
+              <div
+                className="w-full h-10 flex items-center justify-center cursor-row-resize bg-white/80 backdrop-blur-sm z-10"
+                onMouseDown={handleResizerMouseDown}
+                onTouchStart={handleResizerMouseDown}
+              >
+                <div className="w-24 h-1 bg-gray-300 rounded-full shadow-sm" />
+              </div>
 
               {/* 상단 고정 통합 영역 */}
               <div className="sticky top-0 z-40 bg-white">
@@ -1345,6 +1345,8 @@ useEffect(() => {
             </div>
           </>
         ) : (
+
+
           // 데스크탑: 리스트와 지도 영역 분리
           <div className="flex h-screen">
 

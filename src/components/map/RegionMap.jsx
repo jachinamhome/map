@@ -1188,7 +1188,7 @@ useEffect(() => {
 
             {/* 리사이저 */}
             <div
-              className="fixed left-0 right-0 bottom-50 h-12 flex items-center justify-center cursor-row-resize bg-white backdrop-blur-sm z-40 rounded-2xl"
+              className="fixed left-0 right-0 bottom-50 h-40 flex items-center justify-center cursor-row-resize bg-white backdrop-blur-sm z-40 rounded-2xl"
               style={{ top: `${mapHeight - 24}px`,
               transition: 'top 0.3s ease'
              }}

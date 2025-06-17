@@ -1205,11 +1205,11 @@ useEffect(() => {
 
               {/* 리사이저 */}
               <div
-                className="sticky top-0 w-full h-18 bg-white/90 flex items-center justify-center z-50 pd-2"
+                className="sticky top-0 w-full h-18 bg-white/90 flex items-center justify-center z-50"
                 onMouseDown={handleResizerMouseDown}
                 onTouchStart={handleResizerMouseDown}
               >
-                <div className="w-10 h-1.5 bg-gray-200 z-70 rounded-full" />
+                <div className="w-10 h-1.5 my-10 bg-gray-200 z-70 rounded-full" />
               </div>
 
 

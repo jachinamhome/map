@@ -1219,11 +1219,17 @@ useEffect(() => {
                   }
                 }}
                 onWheel={(e) => {
-                  if (e.target.closest('.video-list')) {
-                    e.stopPropagation();
-                    const container = e.currentTarget;
-                    const scrollAmount = e.deltaY;
-                    container.scrollTop += scrollAmount;
+                  const direction = e.deltaY;
+                  const container = e.currentTarget;
+
+                  if (!autoExpanded && direction > 0) {
+                    // 휠 아래 → 확장
+                    setMapHeight(100);
+                    setAutoExpanded(true);
+                  } else if (autoExpanded && direction < 0 && container.scrollTop <= 0) {
+                    // 휠 위 + 최상단 → 축소
+                    setMapHeight(48);
+                    setAutoExpanded(false);
                   }
                 }}
               >

@@ -1185,15 +1185,20 @@ useEffect(() => {
               )}*/}
             </div>
 
+
             {/* 리사이저 */}
             <div
-              className="fixed left-0 right-0 h-10 flex items-center justify-center cursor-row-resize bg-white/80 backdrop-blur-sm z-40 rounded-full"
-              style={{ top: `${mapHeight - 16}px` }}
+              className="fixed left-0 right-0 bottom-50 h-12 flex items-center justify-center cursor-row-resize bg-white backdrop-blur-sm z-40 rounded-2xl"
+              style={{ top: `${mapHeight - 24}px`,
+              transition: 'top 0.3s ease'
+             }}
               onMouseDown={handleResizerMouseDown}
               onTouchStart={handleResizerMouseDown}
             >
               <div className="w-24 h-1 bg-gray-200 rounded-full shadow-sm mb-4" />
             </div>
+
+
             {/* 비디오 목록 */}
               <div
                 ref={scrollRef}  
@@ -1228,11 +1233,10 @@ useEffect(() => {
                 }}
               >
 
-
               {/* 상단 고정 통합 영역 */}
               <div className="sticky top-0 z-40 bg-white">
 
-                            {/* 정렬 바 */}
+              {/* 정렬 바 */}
               <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-4 border-b border-gray-100 z-10 shadow-sm flex flex-row justify-between items-center gap-2 w-full">
                 <div className="flex flex-row items-center font-bold justify-between gap-4 pb-4">
                   <span className="text-gray-500 text-sm whitespace-nowrap">{filteredVideos.length}개 집을 찾았어요</span>

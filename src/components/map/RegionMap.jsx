@@ -1202,9 +1202,10 @@ useEffect(() => {
               {/* 상단 고정 통합 영역 */}
               <div className="sticky top-0 z-40 bg-white">
 
-               {/* 리사이저 */}
+
+              {/* 리사이저 */}
               <div
-                className="w-full h-8 flex items-center justify-center sticky top-0 z-50 pd-2"
+                className="sticky top-0 w-full h-18 bg-white/90 flex items-center justify-center z-50 pd-2"
                 onMouseDown={handleResizerMouseDown}
                 onTouchStart={handleResizerMouseDown}
               >
@@ -1213,7 +1214,7 @@ useEffect(() => {
 
 
               {/* 정렬 바 */}
-              <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-4 border-b border-gray-100 z-10 shadow-sm flex flex-row justify-between items-center gap-2 w-full">
+              <div className="sticky top-0 bg-white/90 backdrop-blur-sm p-4 border-b border-gray-100 z-10 shadow-sm flex flex-row justify-between items-center gap-2 w-full">
                 <div className="flex flex-row items-center font-bold justify-between gap-4 pb-4">
                   <span className="text-gray-500 text-sm whitespace-nowrap">{filteredVideos.length}개 집을 찾았어요</span>
                 </div>

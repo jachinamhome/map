@@ -1200,11 +1200,11 @@ useEffect(() => {
             >
               {/* 리사이저 */}
               <div
-                className="w-full h-12 flex items-center justify-center cursor-row-resize sticky top-0 z-50 bg-white/90"
+                className="w-full h-18 flex items-center justify-center cursor-row-resize sticky top-0 z-50 bg-white/90"
                 onMouseDown={handleResizerMouseDown}
                 onTouchStart={handleResizerMouseDown}
               >
-                <div className="w-14 h-1 bg-gray-300 rounded-full shadow-sm" />
+                <div className="w-14 h-1 mt-2 bg-gray-100 rounded-full shadow-sm" />
               </div>
 
               {/* 상단 고정 통합 영역 */}

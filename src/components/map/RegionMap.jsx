@@ -1188,9 +1188,9 @@ useEffect(() => {
             {/* 비디오 목록 */}
             <div
               ref={scrollRef}  
-              className="fixed left-0 right-0 mt-10 z-30 bg-white/90 shadow-2xl overflow-y-auto"
+              className="fixed left-0 right-0 z-30 bg-white/90 shadow-2xl overflow-y-auto"
               style={{
-                top: `${mapHeight + 8}px`, // ← mapHeight로 위에서부터 내려온 높이
+                top: `${mapHeight}px`, // ← mapHeight로 위에서부터 내려온 높이
                 height: `calc(100dvh - ${mapHeight}px)`,
                 transition: 'top 0.3s ease, height 0.3s ease',
                 touchAction: 'pan-y',
@@ -1312,7 +1312,7 @@ useEffect(() => {
 
               </div>
 
-              <div className="px-4 py-4 video-list">
+              <div className="px-4 py-4 mt-10 video-list">
                 <RegionMapList
                   videos={filteredVideos}
                   getSortedVideos={getSortedVideos}

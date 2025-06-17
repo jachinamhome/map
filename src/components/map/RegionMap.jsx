@@ -25,9 +25,6 @@ import RegionSelectModal from './RegionSelectModal';
 import { Button } from '../ui/button';
 
 
-const [autoExpanded, setAutoExpanded] = useState(false); // 자동 확장 상태
-const scrollRef = useRef(null); // 영상 리스트 스크롤 요소 참조
-
 
 // 하단 리스트의 기본 높이 (픽셀 단위)
 const LIST_HEIGHT = 260;
@@ -159,6 +156,11 @@ const RegionMap = () => {
     initialScale: 1,       // 초기 확대/축소 비율
     lastCenter: { x: 0, y: 0 }  // 마지막 중심점
   });
+
+
+const [autoExpanded, setAutoExpanded] = useState(false); // 자동 확장 상태
+const scrollRef = useRef(null); // 영상 리스트 스크롤 요소 참조
+
 
   // 필터 옵션 상수 정의
   const contractOptions = ['월세', '전세', '매매'];  // 계약 유형 옵션

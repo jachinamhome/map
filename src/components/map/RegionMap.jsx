@@ -1188,7 +1188,7 @@ useEffect(() => {
             {/* 비디오 목록 */}
             <div
               ref={scrollRef}  
-              className="fixed left-0 right-0 bottom-0 z-30 bg-white/90 shadow-2xl overflow-y-auto"
+              className="fixed left-0 right-0 mt-10 z-30 bg-white/90 shadow-2xl overflow-y-auto"
               style={{
                 top: `${mapHeight + 8}px`, // ← mapHeight로 위에서부터 내려온 높이
                 height: `calc(100dvh - ${mapHeight}px)`,

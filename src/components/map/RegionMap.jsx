@@ -1188,7 +1188,7 @@ useEffect(() => {
             {/* 비디오 목록 */}
             <div
               ref={scrollRef}  
-              className="fixed left-0 right-0 z-30 bg-white/90 shadow-2xl overflow-y-auto"
+              className="fixed h-20 left-0 right-0 z-30 bg-white/90 shadow-2xl overflow-y-auto"
               style={{
                 top: `${mapHeight}px`, // ← mapHeight로 위에서부터 내려온 높이
                 height: `calc(100dvh - ${mapHeight}px)`,
@@ -1200,12 +1200,11 @@ useEffect(() => {
             >
               {/* 리사이저 */}
               <div
-                className="w-full h-14 flex items-center justify-center sticky top-0 z-50"
-                style={{ marginTop: '8px' }} // or '0.5rem'
+                className="w-full h-8 flex items-center justify-center sticky top-0 z-50"
                 onMouseDown={handleResizerMouseDown}
                 onTouchStart={handleResizerMouseDown}
               >
-                <div className="w-14 h-1 bg-gray-200 rounded-full shadow-sm" />
+                <div className="w-14 h-1.5 bg-gray-200 rounded-full" />
               </div>
 
               {/* 상단 고정 통합 영역 */}
@@ -1312,7 +1311,7 @@ useEffect(() => {
 
               </div>
 
-              <div className="px-4 py-4 mt-10 video-list">
+              <div className="px-4 py-4 video-list">
                 <RegionMapList
                   videos={filteredVideos}
                   getSortedVideos={getSortedVideos}

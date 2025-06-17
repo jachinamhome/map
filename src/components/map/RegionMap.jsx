@@ -1188,7 +1188,7 @@ useEffect(() => {
             {/* 비디오 목록 */}
             <div
               ref={scrollRef}  
-              className="fixed h-20 left-0 right-0 z-30 bg-white/90 shadow-2xl overflow-y-auto"
+              className="fixed left-0 right-0 bottom-0 z-30 bg-white/90 shadow-2xl overflow-y-auto"
               style={{
                 top: `${mapHeight}px`, // ← mapHeight로 위에서부터 내려온 높이
                 height: `calc(100dvh - ${mapHeight}px)`,
@@ -1200,11 +1200,11 @@ useEffect(() => {
             >
               {/* 리사이저 */}
               <div
-                className="w-full h-8 flex items-center justify-center sticky top-0 z-50"
+                className="w-full h-8 flex items-center justify-center sticky top-0 z-50 pd-2"
                 onMouseDown={handleResizerMouseDown}
                 onTouchStart={handleResizerMouseDown}
               >
-                <div className="w-14 h-1.5 bg-gray-200 rounded-full" />
+                <div className="w-10 h-1.5 bg-gray-200 rounded-full" />
               </div>
 
               {/* 상단 고정 통합 영역 */}

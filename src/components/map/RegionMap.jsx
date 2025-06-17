@@ -1204,7 +1204,7 @@ useEffect(() => {
                 ref={scrollRef}  
                 className="fixed left-0 right-0 bottom-0 z-30 bg-white/90 shadow-2xl overflow-y-auto"
                 style={{
-                  top: `${mapHeight + 8}px`,
+                  top: `${mapHeight + 14}px`,
                   touchAction: 'pan-y',
                   transition: 'top 0.3s ease' 
                 }}

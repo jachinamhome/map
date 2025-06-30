@@ -1204,13 +1204,13 @@ useEffect(() => {
 
 
               {/* 리사이저 */}
-<div
-  className="w-full h-12 flex items-center justify-center bg-white sticky top-0 z-50"
-  onMouseDown={handleResizerMouseDown}
-  onTouchStart={handleResizerMouseDown}
->
-  <div className="w-10 h-1.5 bg-gray-300 rounded-full shadow-sm" />
-</div>
+              <div
+                className="w-full h-12 flex items-center justify-center bg-white sticky top-0 z-50"
+                onMouseDown={handleResizerMouseDown}
+                onTouchStart={handleResizerMouseDown}
+              >
+                <div className="w-10 h-1.5 bg-gray-300 rounded-full shadow-sm" />
+              </div>
 
 
               {/* 정렬 바 */}
